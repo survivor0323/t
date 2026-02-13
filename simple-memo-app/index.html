@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Memo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <h1>나의 메모</h1>
+            <p class="subtitle">생각을 기록하세요.</p>
+            <div class="header-controls">
+                <button id="import-btn" class="icon-btn" aria-label="메모 가져오기 (JSON)">
+                    <!-- Icon inserted by JS -->
+                </button>
+                <input type="file" id="import-input" accept=".json" style="display: none;">
+                <button id="export-btn" class="icon-btn" aria-label="메모 백업 (JSON)">
+                    <!-- Icon inserted by JS -->
+                </button>
+                <button id="theme-toggle" class="icon-btn" aria-label="테마 변경">
+                    <!-- Icon inserted by JS -->
+                </button>
+            </div>
+        </header>
+
+        <div class="input-card">
+            <textarea id="memo-input" placeholder="여기에 메모를 입력하세요..."></textarea>
+            <div class="input-actions">
+                <button id="add-btn">메모 추가</button>
+            </div>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="메모 검색...">
+        </div>
+
+        <div id="memo-list" class="memo-grid">
+            <!-- Memos will be inserted here by JS -->
+        </div>
+        <div id="toast-container" class="toast-container"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

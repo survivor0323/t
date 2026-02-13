@@ -1,0 +1,428 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap');
+
+:root {
+    /* Sophisticated Palette - Light */
+    --bg-base: #f8fafc;
+    --bg-gradient: radial-gradient(circle at 15% 50%, rgba(224, 231, 255, 0.8), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(250, 227, 233, 0.8), transparent 25%);
+
+    --glass-bg: rgba(255, 255, 255, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.8);
+    --glass-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.05);
+    --glass-blur: blur(20px) saturate(180%);
+
+    --text-primary: #334155;
+    /* Slate 700 */
+    --text-secondary: #64748b;
+    /* Slate 500 */
+
+    --accent-color: #6366f1;
+    /* Indigo 500 */
+    --accent-hover: #4f46e5;
+
+    --card-bg: rgba(255, 255, 255, 0.5);
+    --radius: 24px;
+
+    --transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+[data-theme="dark"] {
+    /* Sophisticated Palette - Dark */
+    --bg-base: #0f172a;
+    /* Slate 900 */
+    --bg-gradient: radial-gradient(circle at 15% 50%, rgba(30, 41, 59, 0.8), transparent 40%),
+        radial-gradient(circle at 85% 30%, rgba(15, 23, 42, 0.5), transparent 40%);
+
+    --glass-bg: rgba(30, 41, 59, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.3);
+
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+
+    --accent-color: #818cf8;
+    --accent-hover: #a5b4fc;
+
+    --card-bg: rgba(30, 41, 59, 0.4);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-base);
+    background-image: var(--bg-gradient);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding: 3rem 1.5rem;
+    min-height: 100vh;
+    transition: var(--transition);
+}
+
+/* Typography */
+h1 {
+    font-family: 'Playfair Display', serif;
+    /* Elegant serif for title */
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+    opacity: 0;
+    animation: fadeInDown 0.8s ease-out forwards;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    opacity: 0;
+    animation: fadeInDown 0.8s ease-out 0.1s forwards;
+}
+
+/* Layout */
+.app-container {
+    max-width: 900px;
+    /* Slightly wider for modern feel */
+    margin: 0 auto;
+    position: relative;
+}
+
+header {
+    text-align: center;
+    padding: 3rem 0;
+    position: relative;
+    display: flex;
+    /* Ensure controls align */
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-controls {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 1rem;
+}
+
+.icon-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    padding: 10px;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.icon-btn:hover {
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--accent-color);
+    transform: rotate(15deg);
+}
+
+[data-theme="dark"] .icon-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Glass Input Card */
+.input-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: var(--glass-shadow);
+    margin-bottom: 3.5rem;
+    transition: var(--transition);
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out 0.3s forwards;
+}
+
+.input-card:focus-within {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 48px -4px rgba(0, 0, 0, 0.08);
+    border-color: var(--accent-color);
+}
+
+textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    font-size: 1.1em;
+    resize: none;
+    min-height: 80px;
+    margin-bottom: 1.5rem;
+    outline: none;
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+textarea::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+.input-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+button#add-btn {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0.875rem 2rem;
+    border-radius: 100px;
+    /* Pill shape */
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 1rem;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+}
+
+button#add-btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(99, 102, 241, 0.3);
+}
+
+/* Search Bar - Minimal */
+.search-bar {
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out 0.4s forwards;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 1rem 0;
+    border: none;
+    border-bottom: 1px solid var(--glass-border);
+    /* Underline style */
+    background: transparent;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: var(--transition);
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-bottom-color: var(--accent-color);
+}
+
+/* Memo Grid - Airy */
+.memo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.memo-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    /* Lighter blur for cards */
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: var(--radius);
+    padding: 2rem;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: var(--transition);
+    opacity: 0;
+    animation: popIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    /* Custom easing */
+    position: relative;
+}
+
+.memo-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.7);
+    /* Lighter on hover */
+    box-shadow: 0 20px 40px -4px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .memo-card:hover {
+    background: rgba(30, 41, 59, 0.6);
+}
+
+.memo-content {
+    font-size: 1rem;
+    color: var(--text-primary);
+    white-space: pre-wrap;
+    margin-bottom: 2rem;
+    /* More breathing room */
+    word-break: break-word;
+    font-weight: 400;
+}
+
+/* Markdown Styles */
+.memo-content strong {
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+.memo-content em {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+.memo-content blockquote {
+    border-left: 2px solid var(--accent-color);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.memo-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.03);
+    padding-top: 1.5rem;
+    margin-top: auto;
+}
+
+[data-theme="dark"] .memo-footer {
+    border-top-color: rgba(255, 255, 255, 0.03);
+}
+
+.memo-date {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    /* Uppercase vibe */
+    text-transform: uppercase;
+}
+
+.memo-actions {
+    display: flex;
+    gap: 12px;
+    opacity: 0;
+    /* Hide initially for cleaner look */
+    transition: var(--transition);
+    transform: translateY(5px);
+}
+
+.memo-card:hover .memo-actions {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.action-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0;
+    transition: var(--transition);
+}
+
+.action-btn:hover {
+    color: var(--accent-color);
+    transform: scale(1.2);
+}
+
+.action-btn.delete-btn:hover {
+    color: #ef4444;
+    /* Red 500 */
+}
+
+.action-btn.pin-btn.active {
+    color: #f59e0b;
+    /* Amber 500 */
+}
+
+/* Pinned Style - Subtle Glow */
+.memo-card.pinned {
+    border-color: rgba(245, 158, 11, 0.3);
+    box-shadow: 0 8px 30px -4px rgba(245, 158, 11, 0.1);
+}
+
+[data-theme="dark"] .memo-card.pinned {
+    border-color: rgba(245, 158, 11, 0.2);
+    background: rgba(245, 158, 11, 0.05);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInDown {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes popIn {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Toast */
+.toast-container {
+    bottom: 3rem;
+}
+
+.toast {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    padding: 1rem 2rem;
+    border-radius: 100px;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    box-shadow: 0 10px 40px -5px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    body {
+        padding: 1.5rem 1rem;
+    }
+
+    h1 {
+        font-size: 2.25rem;
+    }
+
+    .memo-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .header-controls {
+        position: static;
+        transform: none;
+        margin-top: 1.5rem;
+    }
+
+    .memo-actions {
+        opacity: 1;
+        transform: none;
+    }
+
+    /* Always show on mobile */
+}

@@ -1,0 +1,3 @@
+@echo off
+echo Simple Memo App을 로컬 서버에서 실행합니다...
+start cmd /k "npx -y http-server -o -c-1"
